@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    networks:
+      - my-network
+
+  backend:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: mydatabase
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
